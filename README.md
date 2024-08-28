@@ -6,3 +6,4 @@ Chose the API !
 Nasdaq datalink?
 
 Other interesting source???
+https://github.com/public-apis/public-apis?tab=readme-ov-file#finance
