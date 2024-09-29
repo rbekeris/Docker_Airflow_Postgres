@@ -17,18 +17,19 @@ On every Friday 15:30 US/Eastern time, an airflow DAG will pull the data in loca
 echo -e "AIRFLOW_UID=$(id -u)" 
 ```
 
-4. initialize aifrlow
+4. Build & initialize aifrlow
 ```sh
-docker compose up --build airflow-init
+docker compose build airflow-init
+docker compose build
 ```
 
-5. build and run docker containers
+5. Start the project services
 ```sh
-docker compose up --build -d 
+docker compose up -d
 ```
-6. to remove everything (done testing)
+6. to remove everything, including data (done testing)
 ```sh
-docker compose down
+docker compose down --volumes --remove-orphans
 ```
 
 
