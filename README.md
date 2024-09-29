@@ -12,17 +12,24 @@ On every Friday 15:30 US/Eastern time, an airflow DAG will pull the data in loca
 1. git clone this repo
 2. make a copy of .env_sample.txt and rename it to .env
 3. run the following shell code and place the value in .env (to avoid Linux permission error)
-````
+
+```sh
 echo -e "AIRFLOW_UID=$(id -u)" 
-````
-4. build and run docker containers
-````
+```
+
+4. initialize aifrlow
+```sh
+docker compose up --build airflow-init
+```
+
+5. build and run docker containers
+```sh
 docker compose up --build -d 
-````
-5. to remove everything (done testing)
-````
+```
+6. to remove everything (done testing)
+```sh
 docker compose down
-````
+```
 
 
 # Considerations
