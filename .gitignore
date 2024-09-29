@@ -3,3 +3,4 @@
 
 /Airflow/logs/*
 /Airflow/dags/__pycache__
+vagrant-setup/.vagrant
