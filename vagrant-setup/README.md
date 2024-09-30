@@ -39,7 +39,7 @@ Your command prompt should be showing `vagrant@ubuntu:~$`. You are now on the vi
 ### Use
 
 - follow the rest of the tutorial from the main readme in this repo.
-- when `docker compose` is up, you can access airflow from your laptop's btowser, just visit http://localhost:8080. The port is forwarded from the virtual machine to your machine.
+- when `docker compose` is up, you can access airflow UI from your laptop's btowser, just visit http://192.168.56.0:8080. The port is forwarded from the virtual machine to your machine, but it's kept isolated in a private network so that it can be accessed only from your laptop, but not by somebody sitting next to you in a cafe.
 
 ### Tidying
 
