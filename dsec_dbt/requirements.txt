@@ -1,0 +1,4 @@
+psycopg2==2.9.9
+dbt-core==1.8.2
+dbt-adapters==1.2.1
+dbt-postgres==1.8.1
