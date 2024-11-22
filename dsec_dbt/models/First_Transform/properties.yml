@@ -315,16 +315,15 @@ sources:
             description: x
       
 models:
-  - name: CFTC
-    schema: public
-    tables:
-    - name: 01_Refined_COT_Report
-      columns:
-      - name: date
-        description: x
-      - name: commodity
-        description: x
-      - name: pct_of_oi_noncomm_long_all
-        description: x
-      - name: pct_of_oi_noncomm_short_all
-        description: x
+  - name: 01_Refined_COT_Report
+    columns:
+    - name: date
+      description: x
+    - name: commodity_name
+      data_tests:
+        - not_null
+      description: x
+    - name: pct_of_oi_noncomm_long_all
+      description: x
+    - name: pct_of_oi_noncomm_short_all
+      description: x

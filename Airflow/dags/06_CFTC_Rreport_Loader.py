@@ -115,6 +115,33 @@ def ingest_cftc_data():
                                                   'DB_SCHEMA': '{{var.value.db_schema}}'
                                                 }
     )
+
+    run_dbt_test = DockerOperator(
+                                    task_id='run_dbt_test',
+                                    #imgage was built upon running docker compose up
+                                    image='docker_airflow_postgres-dbt',
+                                    command=["test"],
+                                    container_name='dsec-dbt-1',
+                                    api_version='auto',
+                                    auto_remove=True,
+                                    docker_url='unix://var/run/docker.sock',
+                                    network_mode='host',
+                                    #tty=True,
+                                    #xcom_all=False,
+                                    #extra_hosts = 'host.docker.internal:host-gateway',
+                                    mounts = [Mount(
+                                        #Here we need to change the absolute path root to be dynamic
+                                                    source=dbt_project_dir, target="/dsec_dbt", type="bind")],
+                                    mount_tmp_dir=False,
+                                    working_dir="/dsec_dbt",
+                                    environment={ 'DB_HOST': '{{var.value.db_host}}',
+                                                  'DB_USER': '{{var.value.db_user}}',
+                                                  'DB_ADMIN_PASSWORD': '{{var.value.db_admin_password}}',
+                                                  'DB_PORT': '{{var.value.db_port_outside}}',
+                                                  'DB_NAME': '{{var.value.db_name}}',
+                                                  'DB_SCHEMA': '{{var.value.db_schema}}'
+                                                }
+    )
         
     @task() 
     def end():
@@ -125,6 +152,7 @@ def ingest_cftc_data():
     chain(  start(),
              cftc_ingest(),
              run_dbt_model,
+             run_dbt_test,
              end()
           )
 
