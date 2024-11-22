@@ -1,0 +1,330 @@
+version: 2
+
+sources:
+  - name: CFTC
+    description: Raw ingested CFTC Data
+    schema: raw 
+    tables:
+      - name: 05_COT_Legacy_Combined_Report
+        columns:
+          - name: report_date_as_yyyy_mm_dd
+            description: x
+          - name: contract_market_name
+            description: x
+          - name: cftc_market_code
+            description: x
+          - name: cftc_commodity_code
+            description: x
+          - name: commodity_name
+            description: x
+          - name: pct_of_oi_comm_long_all
+            description: x
+          - name: pct_of_oi_comm_short_all
+            description: x
+          - name: pct_of_oi_noncomm_long_all
+            description: x
+          - name: pct_of_oi_noncomm_short_all
+            description: x
+
+
+  - name: Eurostat
+    description: Raw ingested eurostat wheat price data
+    schema: raw 
+    tables:
+      - name: 07_Eurostat_Wheat_Prices
+        columns:
+          - name: "realtime_start"
+            description: x
+          - name: "Week nr."
+            description: x
+          - name: "Date from"
+            description: x
+          - name: "Date to"
+            description: x
+          - name: "BE - Brussel - Bruxelles - DEPPROD"
+            description: x
+          - name: "BG - Burgas - DEPPROD"
+            description: x
+          - name: "BG - Dobrich - DEPPROD"
+            description: x
+          - name: "BG - Pleven - DEPPROD"
+            description: x
+          - name: "BG - Ruse - DEPPROD"
+            description: x
+          - name: "BG - Stara Zagora - DEPPROD"
+            description: x
+          - name: "BG - Varna - DEPPROD"
+            description: x
+          - name: "BG - Varna (port) - FOB"
+            description: x
+          - name: "CZ - Praha (Delivered) - DELFIRST"
+            description: x
+          - name: "DE - Hamburg - DEPSILO"
+            description: x
+          - name: "DE - Köln - DEPSILO"
+            description: x
+          - name: "EE - Estonia - DELFIRST"
+            description: x
+          - name: "EL - Ioannina - FGATE"
+            description: x
+          - name: "ES - Burgos - DEPSILO"
+            description: x
+          - name: "FI - Naantali - DELPORT"
+            description: x
+          - name: "FR - La Pallice - DELPORT"
+            description: x
+          - name: "FR - Rouen - DELPORT"
+            description: x
+          - name: "HR - ZAGREB - DEPSILO"
+            description: x
+          - name: "HU - Great Plain - FGATE"
+            description: x
+          - name: "HU - North Hungary - FGATE"
+            description: x
+          - name: "IT - Bologna - DELFIRST"
+            description: x
+          - name: "LT - Vilnius - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "PT - Lisboa- DEPPORT"
+            description: x
+          - name: "RO - Banat - DEPSILO"
+            description: x
+          - name: "RO - Constanta - FOB"
+            description: x
+          - name: "RO - Muntenia - DEPSILO"
+            description: x
+          - name: "RO - Oltenia - DEPSILO"
+            description: x
+          - name: "SE - Södra Sverige - FOB"
+            description: x
+          - name: "SL - Ljubljana - DELFIRST"
+            description: x
+          - name: "SK - Bratislava - DEPPROD"
+            description: x
+          - name: "BE- Brussel - Bruxelles - DEPPROD"
+            description: x
+          - name: "BG - Burgas - DEPPROD"
+            description: x
+          - name: "BG - Dobrich - DEPPROD"
+            description: x
+          - name: "BG - Pleven - DEPPROD"
+            description: x
+          - name: "BG - Stara Zagora - DEPPROD"
+            description: x
+          - name: "BG - Varna - DEPPROD"
+            description: x
+          - name: "DE - Hamburg - DEPSILO"
+            description: x
+          - name: "DE - Köln - DEPSILO"
+            description: x
+          - name: "DE - München - DEPSILO"
+            description: x
+          - name: "DE - Würzburg - DEPSILO"
+            description: x
+          - name: "Estonia - DELFIRST"
+            description: x
+          - name: "EL - Ioannina - FGATE"
+            description: x
+          - name: "EL - Kilkis - FGATE"
+            description: x
+          - name: "FR - Eure-et-Loir - DEPSILO"
+            description: x
+          - name: "FR - Port-La-Nouvelle - DELPORT"
+            description: x
+          - name: "FR - Rouen - DELPORT"
+            description: x
+          - name: "HU - Budapest - DELPORT-GEX"
+            description: x
+          - name: "HU - Great Plain - FGATE"
+            description: x
+          - name: "IE - Cork - DELFIRST"
+            description: x
+          - name: "IE - Dublin/North East/Midlands - DELFIRST"
+            description: x
+          - name: "Ie - Wexford - DELFIRST"
+            description: x
+          - name: "LT - Vilnius - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST"
+            description: x
+          - name: "NL - Rotterdam - CIF"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "PT - Lisboa- DEPPORT"
+            description: x
+          - name: "RO - Banat - DEPSILO"
+            description: x
+          - name: "RO - Muntenia - DEPSILO"
+            description: x
+          - name: "RO - Oltenia - DEPSILO"
+            description: x
+          - name: "SK - Bratislava - DEPPROD"
+            description: x
+          - name: "EL - Kilkis - FGATE"
+            description: x
+          - name: "ES - Sevilla - DEPSILO"
+            description: x
+          - name: "FR - La Pallice - DELPORT"
+            description: x
+          - name: "FR - Port-La-Nouvelle - DELPORT"
+            description: x
+          - name: "IT - Bologna - DELFIRST"
+            description: x
+          - name: "BE- Brussel - Bruxelles - DEPPROD"
+            description: x
+          - name: "BG - Burgas - DEPPROD"
+            description: x
+          - name: "DE - Hamburg - DEPSILO"
+            description: x
+          - name: "DK - Kobenhavn"
+            description: x
+          - name: "Estonia - DELFIRST"
+            description: x
+          - name: "EL - Ioannina - FGATE"
+            description: x
+          - name: "ES - Valladolid - DEPSILO"
+            description: x
+          - name: "FI - Naantali - DELPORT"
+            description: x
+          - name: "FR - La Pallice - DELPORT"
+            description: x
+          - name: "FR - Rouen - DELPORT"
+            description: x
+          - name: "HU - Great Plain - FGATE"
+            description: x
+          - name: "IE - Dublin/North East/Midlands - DELFIRST"
+            description: x
+          - name: "IT - Bologna - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST"
+            description: x
+          - name: "NL - Rotterdam - CIF"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "PT - Lisboa- DEPPORT"
+            description: x
+          - name: "RO - Banat - DEPSILO"
+            description: x
+          - name: "RO - Constanta - FOB"
+            description: x
+          - name: "RO - Muntenia - DEPSILO"
+            description: x
+          - name: "RO - Oltenia - DEPSILO"
+            description: x
+          - name: "SK - Bratislava - DEPPROD"
+            description: x
+          - name: "BE - Brussel - Bruxelles - DEPPROD"
+            description: x
+          - name: "BG - Dobrich - DEPPROD"
+            description: x
+          - name: "BG - Pleven - DEPPROD"
+            description: x
+          - name: "BG - Ruse - DEPPROD"
+            description: x
+          - name: "BG - Stara Zagora - DEPPROD"
+            description: x
+          - name: "BG - Varna - DEPPROD"
+            description: x
+          - name: "DE - Köln - DEPSILO"
+            description: x
+          - name: "DK - Kobenhavn"
+            description: x
+          - name: "EL - Ioannina - FGATE"
+            description: x
+          - name: "ES - Sevilla - DEPSILO"
+            description: x
+          - name: "ES - Valladolid - DEPSILO"
+            description: x
+          - name: "FR - Bordeaux - DELPORT"
+            description: x
+          - name: "FR - Rhin - FOB"
+            description: x
+          - name: "HR - ZAGREB - DEPSILO"
+            description: x
+          - name: "HU -Budapest - DELPORT-GEX"
+            description: x
+          - name: "HU - Great Plain - FGATE"
+            description: x
+          - name: "IT - Bologna - DELFIRST"
+            description: x
+          - name: "NL - Rotterdam - CIF"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "PT - Lisboa- DEPPORT"
+            description: x
+          - name: "RO - Constanta - FOB"
+            description: x
+          - name: "RO - Muntenia - DEPSILO"
+            description: x
+          - name: "RO - Oltenia - DEPSILO"
+            description: x
+          - name: "SL - Ljubljana - DELFIRST"
+            description: x
+          - name: "SK - Bratislava - DEPPROD"
+            description: x
+          - name: "DK - Kobenhavn"
+            description: x
+          - name: "EL - Larissa - FGATE"
+            description: x
+          - name: "FI - Naantali - DELPORT"
+            description: x
+          - name: "LT - Vilnius - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "RO - Muntenia - DEPSILO"
+            description: x
+          - name: "SK - Bratislava - DEPPROD"
+            description: x
+          - name: "AT - Wels - DEPSILO"
+            description: x
+          - name: "DE - Köln - DEPSILO2"
+            description: x
+          - name: "FI - Loviisa - DELPORT"
+            description: x
+          - name: "LT - Vilnius - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST2"
+            description: x
+          - name: "DK - Kobenhavn2"
+            description: x
+          - name: "LT - Vilnius - DELFIRST"
+            description: x
+          - name: "LV - National Average - DELFIRST3"
+            description: x
+          - name: "PL - National Average - DELFIRST"
+            description: x
+          - name: "AT - Wien - DEPSILO"
+            description: x
+          - name: "CZ - Praha (Delivered) - DELFIRST"
+            description: x
+          - name: "DE - Hamburg - DEPSILO"
+            description: x
+          - name: "LV - National Average - DELFIRST"
+            description: x
+          - name: "PL - National Average - DELFIRST"  
+            description: x
+      
+models:
+  - name: CFTC
+    schema: public
+    tables:
+    - name: 01_Refined_COT_Report
+      columns:
+      - name: date
+        description: x
+      - name: commodity
+        description: x
+      - name: pct_of_oi_noncomm_long_all
+        description: x
+      - name: pct_of_oi_noncomm_short_all
+        description: x
