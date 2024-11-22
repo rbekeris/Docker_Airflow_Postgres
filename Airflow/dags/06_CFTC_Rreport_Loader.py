@@ -5,6 +5,8 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.models import Variable
 from airflow.models.baseoperator import chain
 from airflow.decorators import dag, task, task_group
+from airflow.providers.docker.operators.docker import DockerOperator
+from docker.types import Mount
 
 #pendulum required for timezonde aware dags
 import pendulum
@@ -14,6 +16,8 @@ import pandas as pd
 import threading
 import time
 from datetime import datetime
+
+dbt_project_dir = Variable.get("dbt_project_dir")
 
 @dag(
     # every week on wednesday?
@@ -84,6 +88,33 @@ def ingest_cftc_data():
         df["pct_of_oi_noncomm_short_all"] = df["pct_of_oi_noncomm_short_all"].astype(float)
 
         df.to_sql('05_COT_Legacy_Combined_Report', postgres_hook.get_sqlalchemy_engine(), schema='raw',if_exists='replace', index=False)
+
+    run_dbt_model = DockerOperator(
+                                    task_id='run_dbt_model',
+                                    #imgage was built upon running docker compose up
+                                    image='docker_airflow_postgres-dbt',
+                                    command=["run", "--models", "01_Refined_COT_Report"],
+                                    container_name='dsec-dbt-1',
+                                    api_version='auto',
+                                    auto_remove=True,
+                                    docker_url='unix://var/run/docker.sock',
+                                    network_mode='host',
+                                    #tty=True,
+                                    #xcom_all=False,
+                                    #extra_hosts = 'host.docker.internal:host-gateway',
+                                    mounts = [Mount(
+                                        #Here we need to change the absolute path root to be dynamic
+                                                    source=dbt_project_dir, target="/dsec_dbt", type="bind")],
+                                    mount_tmp_dir=False,
+                                    working_dir="/dsec_dbt",
+                                    environment={ 'DB_HOST': '{{var.value.db_host}}',
+                                                  'DB_USER': '{{var.value.db_user}}',
+                                                  'DB_ADMIN_PASSWORD': '{{var.value.db_admin_password}}',
+                                                  'DB_PORT': '{{var.value.db_port_outside}}',
+                                                  'DB_NAME': '{{var.value.db_name}}',
+                                                  'DB_SCHEMA': '{{var.value.db_schema}}'
+                                                }
+    )
         
     @task() 
     def end():
@@ -93,6 +124,7 @@ def ingest_cftc_data():
     
     chain(  start(),
              cftc_ingest(),
+             run_dbt_model,
              end()
           )
 

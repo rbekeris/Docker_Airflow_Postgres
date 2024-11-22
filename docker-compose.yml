@@ -24,6 +24,13 @@ x-airflow-common:
 
     AIRFLOW_CONN_DB: ${AIRFLOW_CONN_DB}
     AIRFLOW_VAR_API_KEY: ${AIRFLOW_VAR_API_KEY}
+    AIRFLOW_VAR_DB_HOST: ${DB_HOST}
+    AIRFLOW_VAR_DB_USER: ${DB_USER}
+    AIRFLOW_VAR_DB_ADMIN_PASSWORD: ${DB_ADMIN_PASSWORD}
+    AIRFLOW_VAR_DB_PORT_OUTSIDE: ${DB_PORT_OUTSIDE}
+    AIRFLOW_VAR_DB_NAME: ${DB_NAME}
+    AIRFLOW_VAR_DB_SCHEMA: ${DB_SCHEMA}
+    AIRFLOW_VAR_DBT_PROJECT_DIR: ${DBT_PROJECT_DIR}
 
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
@@ -250,6 +257,21 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  dbt:
+    build:
+      context: ./dsec_dbt
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DB_HOST: ${DB_HOST_BETWEEN_CONTAINERS}
+      DB_USER: ${DB_USER}
+      DB_ADMIN_PASSWORD: ${DB_ADMIN_PASSWORD}
+      DB_PORT_OUTSIDE: ${DB_PORT_BETWEEN_CONTAINERS}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+      DBT_PROJECT_DIR: ${DBT_PROJECT_DIR}
 
 volumes:
   postgres-db-volume:
