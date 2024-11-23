@@ -44,6 +44,15 @@ export DB_PORT=$DB_PORT_OUTSIDE
 export DB_NAME=$DB_NAME
 export DB_SCHEMA=$DB_SCHEMA
 
+dbt run --select "01_Refined_COT_Report"
+```
+
+8. Prepare .env for Docker to be able to read/write dbt project directory
+```sh
+cd dsec_dbt
+pwd
+# assign the full path to .env variable DBT_PROJECT_DIR="/your/directory/path"
+
 ```
 
 
@@ -52,3 +61,4 @@ export DB_SCHEMA=$DB_SCHEMA
 1. Airflow and the database should probably live in separate repositories (separation of concerns)
 2. There is a lot of ways to configure Aiflow DAG's -> this is a great book on the topic: https://www.amazon.co.uk/Data-Pipelines-Apache-Airflow-Harenslak/dp/1617296902 
 3. The following course was extremely useful for the wide subject of Docker: https://www.udemy.com/share/101Wek/
+4. Depending on git, python, docker setups on your machine, there will be permission issues -> run chwon and play with id -u, .env variables
