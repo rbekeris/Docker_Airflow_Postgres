@@ -340,4 +340,17 @@ models:
       data_tests:
         - not_null
       description: x
+
+  - name: 03_Combined_table
+    columns:
+    - name: date
+      description: x
+    - name: commodity_name
+      data_tests:
+        - not_null
+      description: x
+    - name: "DE - Hamburg - DEPSILO"
+      description: x
+    - name: pct_of_oi_noncomm_long_all
+      description: x
     
