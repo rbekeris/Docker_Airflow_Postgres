@@ -120,7 +120,7 @@ def ingest_cftc_data():
                                     task_id='run_dbt_test',
                                     #imgage was built upon running docker compose up
                                     image='docker_airflow_postgres-dbt',
-                                    command=["test"],
+                                    command=["test", "--select", "01_Refined_COT_Report"],
                                     container_name='dsec-dbt-1',
                                     api_version='auto',
                                     auto_remove=True,

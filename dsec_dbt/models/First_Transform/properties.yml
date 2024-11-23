@@ -327,3 +327,17 @@ models:
       description: x
     - name: pct_of_oi_noncomm_short_all
       description: x
+
+  - name: 02_Refined_Eurostat
+    columns:
+    - name: date
+      description: x
+    - name: commodity_name
+      data_tests:
+        - not_null
+      description: x
+    - name: "DE - Hamburg - DEPSILO"
+      data_tests:
+        - not_null
+      description: x
+    
