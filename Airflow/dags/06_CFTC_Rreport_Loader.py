@@ -1,7 +1,6 @@
 from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.models import Variable
 from airflow.models.baseoperator import chain
 from airflow.decorators import dag, task, task_group
@@ -28,7 +27,7 @@ dbt_project_dir = Variable.get("dbt_project_dir")
     # with a schedule of 0 0 * * * will run daily at 04:00 UTC during daylight savings time
     # and at 05:00 otherwise.
 
-    schedule_interval = '31 15 * * 5', 
+    schedule = '31 15 * * 5', 
 
     start_date=pendulum.datetime(2024, 1, 1, tz="US/Eastern"), 
     
@@ -96,7 +95,7 @@ def ingest_cftc_data():
                                     command=["run", "--models", "01_Refined_COT_Report"],
                                     container_name='dsec-dbt-1',
                                     api_version='auto',
-                                    auto_remove=True,
+                                    auto_remove='force',
                                     docker_url='unix://var/run/docker.sock',
                                     network_mode='host',
                                     #tty=True,
@@ -123,7 +122,7 @@ def ingest_cftc_data():
                                     command=["test", "--select", "01_Refined_COT_Report"],
                                     container_name='dsec-dbt-1',
                                     api_version='auto',
-                                    auto_remove=True,
+                                    auto_remove='force',
                                     docker_url='unix://var/run/docker.sock',
                                     network_mode='host',
                                     #tty=True,

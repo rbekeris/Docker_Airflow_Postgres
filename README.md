@@ -11,10 +11,11 @@ On every Friday 15:30 US/Eastern time, an airflow DAG will pull the data in loca
 
 1. git clone this repo
 2. make a copy of .env_sample.txt and rename it to .env
-3. run the following shell code and place the value in .env (to avoid Linux permission error)
+3. run "generate_secret_keys.py" and place them in .env (fernet key + secret key)
+3. run the following shell code and set AIRFLOW_UID to your user id and DOCKER_GID with Docker group id.
 
 ```sh
-echo -e "AIRFLOW_UID=$(id -u)" 
+id
 ```
 
 4. Build & initialize aifrlow

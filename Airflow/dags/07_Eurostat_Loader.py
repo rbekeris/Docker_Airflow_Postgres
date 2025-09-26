@@ -1,7 +1,6 @@
 from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.models import Variable
 from airflow.models.baseoperator import chain
 from airflow.decorators import dag, task, task_group
@@ -23,7 +22,7 @@ dbt_project_dir = Variable.get("dbt_project_dir")
     #the data is published on wednesdays ... unspecified time.
     #so we will schedule oru DAG every thusday at 06:31
 
-    schedule_interval = '31 06 * * 4', 
+    schedule = '31 06 * * 4', 
 
     start_date=pendulum.datetime(2024, 1, 1, tz="Europe/London"), 
     
@@ -69,7 +68,7 @@ def ingest_eurostat_data():
                                     command=["run", "--models", "02_Refined_Eurostat"],
                                     container_name='dsec-dbt-1',
                                     api_version='auto',
-                                    auto_remove=True,
+                                    auto_remove='force',
                                     docker_url='unix://var/run/docker.sock',
                                     network_mode='host',
                                     #tty=True,
