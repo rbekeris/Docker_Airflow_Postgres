@@ -295,7 +295,7 @@ services:
       context: ./PostgreSQL
       dockerfile: Dockerfile
     ports:
-      - "33000:5433"
+      - "33000:5432"
     environment:
       - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD}
     restart: always
